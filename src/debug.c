@@ -38,11 +38,11 @@ void _debug_dump_registers(long const *regs)
 
 
 
-void _dump_backtrace(void) {
+void dump_backtrace(void) {
     void **frame_pointer = get_rbp_pointer();
 
     long depth = 0;
-    while (frame_pointer && frame_pointer[1]) {
+    while (frame_pointer && frame_pointer[1] ) { 
         void *return_address = frame_pointer[1];
 
         Dl_info info;
@@ -54,3 +54,4 @@ void _dump_backtrace(void) {
         depth++;
     }
 }
+

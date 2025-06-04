@@ -10,11 +10,11 @@
 get_rbp_pointer: # This is for get a current bp
     movq %rbp, %rax
     ret
-
+/*
 dump_backtrace:
     call _dump_backtrace
     ret
-
+*/
 
 .section .rodata
 backtrace_format_str:
