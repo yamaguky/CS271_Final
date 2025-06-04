@@ -15,4 +15,5 @@ lib/libdebug.o: $(AS_OBJS) $(C_OBJS)
 test/main: test/main.c lib/libdebug.o
 	$(LINK.c) -o $@ $^
 
-
+clean:
+	rm -f test/main lib/libdebug.o $(AS_OBJS) $(C_OBJS)
