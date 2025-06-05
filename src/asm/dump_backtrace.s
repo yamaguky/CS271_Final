@@ -4,7 +4,7 @@
 # Constants (see `man dladdr` for Dl_info layout) 
 #https://man7.org/linux/man-pages/man3/dladdr.3.html
 .equ    MAX_FRAMES,   64   # hard cap on walked frames           
-.equ    DLINFO_SZ,    32   # sizeof(struct Dl_info) → see dlfcn.h
+.equ    DLINFO_SZ,    32   # sizeof(struct Dl_info) -> see dlfcn.h
 .equ    SLOT_SZ,      48   # DLINFO_SZ + 16 for guaranteed 16-B alignment
 
 _dump_backtrace:
@@ -32,7 +32,7 @@ _dump_backtrace:
         testq   %r12, %r12
         je      .Done
 
-        movq    8(%rbx), %rdi         # return address → rdi             
+        movq    8(%rbx), %rdi         # return address -> rdi             
         subq    $SLOT_SZ, %rsp        # reserve one aligned Dl_info slot  
         leaq    (%rsp), %rsi          # rsi = &Dl_info                    
         call    dladdr@PLT            # see `man dladdr`                  
