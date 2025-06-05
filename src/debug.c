@@ -1,8 +1,4 @@
-#define _GNU_SOURCE
 #include <stdio.h>
-#include <stdint.h>
-#include <dlfcn.h>
-#include <string.h>
 
 #include "debug.h"
 
@@ -25,8 +21,7 @@ char const *regnames[] = {
     "r15",
 };
 
-extern const char backtrace_format_str[];  
-extern void *get_rbp_pointer(void);
+extern void _dump_backtrace(void);
 
 /* Internal helper function */
 void _debug_dump_registers(long const *regs)
@@ -37,21 +32,7 @@ void _debug_dump_registers(long const *regs)
 }
 
 
-
-void dump_backtrace(void) {
-    void **frame_pointer = get_rbp_pointer();
-
-    long depth = 0;
-    while (frame_pointer && frame_pointer[1] ) { 
-        void *return_address = frame_pointer[1];
-
-        Dl_info info;
-
-        if (dladdr(return_address, &info)) {
-            printf(backtrace_format_str, depth, info.dli_saddr, info.dli_sname ? info.dli_sname : "??", info.dli_fname ? info.dli_fname : "??");  
-        }
-        frame_pointer = (void **)frame_pointer[0];
-        depth++;
-    }
+void dump_backtrace(void)
+{
+    _dump_backtrace();              
 }
-
