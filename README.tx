@@ -57,7 +57,7 @@ library to resolve return addresses to symbol names. That is, it converts return
 function to human-readable format. These are printed to standard output using the printf() function.
 
 
-Terminal dump
+Example output
 rax	42 (0x2a)
 rbx	140720813640424 (0x7ffc1e1c0ae8)
 rcx	4 (0x4)
