@@ -1,7 +1,8 @@
+```
 # CS271 Final Project - Debugging: Walking the Stack
 ### By Abdul Raziq, Kyohei Yamaguchi, and Christopher Vote
 
-```
+
 ## Map of directories
 
 project-root/  
