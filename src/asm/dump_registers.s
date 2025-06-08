@@ -3,9 +3,10 @@
 .type dump_registers, @function
 
 dump_registers:
-    subq $128, %rsp
+    subq $128, %rsp		# Allocates 128 bytes on the stack to store registers
 
-    movq %rax,   0(%rsp)
+    # Save caller-saved and callee-saved general-purpose registers
+    movq %rax,   0(%rsp)	
     movq %rbx,   8(%rsp)
     movq %rcx,  16(%rsp)
     movq %rdx,  24(%rsp)
@@ -13,8 +14,8 @@ dump_registers:
     movq %rdi,  40(%rsp)
     movq %rbp,  48(%rsp)
 
-    leaq 8(%rbp), %rax     
-    movq %rax,  56(%rsp)
+    leaq 8(%rbp), %rax    	# Load return address into %rax at [%rbp + 8]
+    movq %rax,  56(%rsp)	# Save return address
 
     movq %r8,   64(%rsp)
     movq %r9,   72(%rsp)
@@ -26,9 +27,9 @@ dump_registers:
     movq %r15, 120(%rsp)
 
     # Now call the C function with pointer to register dump
-    movq %rsp, %rdi
-    call _debug_dump_registers
+    movq %rsp, %rdi		# Pass pointer to saved registers as argument
+    call _debug_dump_registers	# External C function processes the register dump 
 
     # Clean up stack
-    addq $128, %rsp
-    ret
+    addq $128, %rsp		# Restores the stack pointer to its original position
+    ret				# Return to caller
