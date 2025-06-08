@@ -23,6 +23,7 @@ char const *regnames[] = {
 
 extern void _dump_backtrace(void);
 
+
 /* Internal helper function */
 void _debug_dump_registers(long const *regs)
 {
@@ -31,8 +32,7 @@ void _debug_dump_registers(long const *regs)
     }
 }
 
-
-void dump_backtrace(void)
-{
-    _dump_backtrace();              
+void dump_backtrace(void) {
+    _dump_backtrace();
 }
+
